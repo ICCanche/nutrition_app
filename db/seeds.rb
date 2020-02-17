@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+puts "Creating default food categories"
+food_categories = FoodCategory.all
+unless food_categories.count != 0
+    FoodCategory.create({name:'carne'})
+    FoodCategory.create({name:'verduras'})
+    FoodCategory.create({name:'frutas'})
+    FoodCategory.create({name:'productos'})
+end
