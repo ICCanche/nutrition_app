@@ -1,0 +1,6 @@
+# data base bitbucket pipeline defaults
+# use your own values
+db_host: localhost
+db_name: database_name
+db_username: username
+db_password: ''
