@@ -30,4 +30,10 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  errors:
+    internal_server_error:
+      title: 'Internal Server Error'
+      detail: 'The request has ocasionated an server error'
+    route_not_found:
+      title: 'Route Not Found'
+      detail: 'The requested route was not found'
