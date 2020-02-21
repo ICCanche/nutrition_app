@@ -26,11 +26,14 @@ module API
     
       def entity
         @entity ||=
-            FacebookService.fetch_data params[:access_token] do |facebookData|
-              User.find_or_create_by uid: facebookData[:id] do |user|
-                user.first_name = facebookData[:first_name]
-                user.last_name = facebookData[:last_name]
-                user.email = facebookData[:email]
+            FacebookService.fetch_data params[:access_token] do |facebookData| 
+              puts "PENDEJOOOOOOO #{facebookData}"
+              User.find_or_create_by uid: facebookData["id"] do |user|
+                user.first_name = facebookData["first_name"]
+                user.last_name = facebookData["last_name"]
+                user.profile_picture = facebookData["picture"]["data"]["url"]
+                user.email = facebookData["email"]
+                user.uid = facebookData["id"]
               end
             end
       end

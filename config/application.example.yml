@@ -4,3 +4,6 @@ db_host: localhost
 db_name: database_name
 db_username: username
 db_password: ''
+facebook:
+  app_secret: ''
+  app_id: ''
