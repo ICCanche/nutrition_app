@@ -37,3 +37,9 @@ en:
     route_not_found:
       title: 'Route Not Found'
       detail: 'The requested route was not found'
+    not_authorized:
+      title: 'Not allowed'
+      detail: 'You do not have access to this resource'
+    invalid_facebook_token:
+      title: 'Invalid facebook token'
+      detail: 'You entered an invalid  facebook token'

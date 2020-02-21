@@ -6,3 +6,9 @@ en:
     route_not_found:
       title: 'Ruta no encontrada'
       detail: 'La ruta solicitada no existe.'
+    not_authorized:
+      title: 'No autorizado'
+      detail: 'No tienes los permisos/credenciales correctos'
+    invalid_facebook_token:
+      title: 'Token de facebook inválido'
+      detail: 'El token proporcionado es inválido'

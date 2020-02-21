@@ -6,10 +6,14 @@ module Error
           # Avoid setting rescue_from Exception/StandardError since it will override your
           # own custom rescue_from handlers https://stackoverflow.com/a/9121054/3287738
           # WARNING
-          rescue_from ActionController::RoutingError do |e|
-            respond NotFound.new  e.message,
+        rescue_from Koala::Facebook::AuthenticationError do |e|
+          respond InvalidFacebookToken.new
+        end
+
+        rescue_from ActionController::RoutingError do |e|
+         respond NotFound.new  e.message,
                                   detail: { failures: e.failures }
-          end
+        end
         end
 
         def respond(error)
@@ -25,10 +29,6 @@ module Error
                 status: error.status,
                 adapter: :json,
                 serializer: ErrorSerializer
-        end
-    
-        def hello
-          puts "perro"
         end
       end
     end
