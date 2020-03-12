@@ -27,7 +27,6 @@ module API
       def entity
         @entity ||=
             FacebookService.fetch_data params[:access_token] do |facebookData| 
-              puts "PENDEJOOOOOOO #{facebookData}"
               User.find_or_create_by uid: facebookData["id"] do |user|
                 user.first_name = facebookData["first_name"]
                 user.last_name = facebookData["last_name"]
