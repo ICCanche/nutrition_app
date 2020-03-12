@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     namespace :v1, defaults: { format: 'json' } do
       resources :foods, :categories, only: [:index]
       resources :facebook_user_token, only: [:create]
+      #custom user routes
+      get '/users/current', to: 'users#current', as: 'current_user'
     end
     match '(*path)', to: 'errors#routing', via: :all
   end
