@@ -6,11 +6,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-puts "Creating default food categories"
 food_categories = FoodCategory.all
 unless food_categories.count != 0
+    puts "Creating default food categories"
     FoodCategory.create({name:'carne'})
     FoodCategory.create({name:'verduras'})
     FoodCategory.create({name:'frutas'})
     FoodCategory.create({name:'productos'})
+end
+
+physical_activities = PhysicalActivity.all
+unless physical_activities.count != 0
+    puts "Creating default physical activities"
+    PhysicalActivity.create({ name: 'Casi ninguna actividad física' })
+    PhysicalActivity.create({ name: 'A menudo salgo a caminar' })
+    PhysicalActivity.create({ name: 'Ejercicio 1 - 2 veces a la semana' })
+    PhysicalActivity.create({ name: 'Ejercicio 3 - 5 veces a la semana' })
+    PhysicalActivity.create({ name: 'Ejercicio 5 - 7 veces a la semana' })
 end
