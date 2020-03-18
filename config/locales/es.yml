@@ -12,3 +12,6 @@ en:
     invalid_facebook_token:
       title: 'Token de facebook inválido'
       detail: 'El token proporcionado es inválido'
+    forbidden:
+      title: 'Permisos inválidos'
+      detail: 'No tienes permitido accecer a este recurso'

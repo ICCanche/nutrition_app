@@ -43,3 +43,6 @@ en:
     invalid_facebook_token:
       title: 'Invalid facebook token'
       detail: 'You entered an invalid  facebook token'
+    forbidden:
+      title: 'Invalid Permissions'
+      detail: 'You are not allowed to access this resource'

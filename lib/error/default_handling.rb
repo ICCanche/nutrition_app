@@ -14,6 +14,11 @@ module Error
          respond NotFound.new  e.message,
                                   detail: { failures: e.failures }
         end
+
+        rescue_from Forbidden do |e|
+          respond Forbidden.new
+        end
+        
         end
 
         def respond(error)

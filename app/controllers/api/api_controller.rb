@@ -5,5 +5,6 @@ module API
     # protect_from_forgery with: :exception
     include Error::DefaultHandling
     include Knock::Authenticable
+    include CheckPermission
   end
 end
