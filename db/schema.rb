@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_18_034428) do
+ActiveRecord::Schema.define(version: 2020_03_18_043637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,13 +42,6 @@ ActiveRecord::Schema.define(version: 2020_03_18_034428) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "user_roles", force: :cascade do |t|
-    t.string "roleType"
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "first_name"
@@ -57,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_03_18_034428) do
     t.string "profile_picture"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "role", default: 0
   end
 
   add_foreign_key "foods", "food_categories"
