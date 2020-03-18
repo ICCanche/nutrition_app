@@ -24,3 +24,11 @@ unless physical_activities.count != 0
     PhysicalActivity.create({ name: 'Ejercicio 3 - 5 veces a la semana' })
     PhysicalActivity.create({ name: 'Ejercicio 5 - 7 veces a la semana' })
 end
+
+goals = Goal.all
+unless goals.count != 0
+    puts "Creating default goals"
+    Goal.create({ goalType: "lose_body_fat", name:"Perder grasa" })
+    Goal.create({ goalType: "gain_muscle", name:"Subir masa muscular" })
+    Goal.create({ goalType: "keep_weight", name:"Mantener peso" })
+end
