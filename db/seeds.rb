@@ -6,6 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+#Roles
+roles = UserRole.all
+unless roles.count != 0
+    puts "Creating user roles"
+    UserRole.create(roleType: "customer", name: "Cliente")
+    UserRole.create(roleType: "admin", name: "Administrador")
+end
+
 food_categories = FoodCategory.all
 unless food_categories.count != 0
     puts "Creating default food categories"
