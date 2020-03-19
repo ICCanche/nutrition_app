@@ -10,10 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_18_043637) do
+ActiveRecord::Schema.define(version: 2020_03_19_183510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "customers", force: :cascade do |t|
+    t.string "gender"
+    t.integer "age"
+    t.string "occupation"
+    t.decimal "weight"
+    t.decimal "height"
+    t.decimal "imc"
+    t.integer "daily_foods"
+    t.string "disease"
+    t.boolean "is_completed", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "customers_foods", id: false, force: :cascade do |t|
+    t.bigint "food_id", null: false
+    t.bigint "customer_id", null: false
+    t.index ["food_id", "customer_id"], name: "index_customers_foods_on_food_id_and_customer_id"
+  end
+
+  create_table "customers_goals", id: false, force: :cascade do |t|
+    t.bigint "goal_id", null: false
+    t.bigint "customer_id", null: false
+    t.index ["customer_id", "goal_id"], name: "index_customers_goals_on_customer_id_and_goal_id"
+  end
 
   create_table "food_categories", force: :cascade do |t|
     t.string "name", null: false
