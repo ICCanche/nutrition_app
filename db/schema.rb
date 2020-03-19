@@ -81,6 +81,6 @@ ActiveRecord::Schema.define(version: 2020_03_19_194930) do
     t.integer "role", default: 0
   end
 
-  add_foreign_key "customers", "users"
+  add_foreign_key "customers", "users", on_delete: :cascade
   add_foreign_key "foods", "food_categories"
 end
