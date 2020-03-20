@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_19_194930) do
+ActiveRecord::Schema.define(version: 2020_03_20_211242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 2020_03_19_194930) do
     t.decimal "imc", precision: 10, scale: 2
     t.integer "daily_foods"
     t.string "disease"
-    t.boolean "is_completed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
@@ -79,6 +78,7 @@ ActiveRecord::Schema.define(version: 2020_03_19_194930) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "role", default: 0
+    t.boolean "is_completed", default: false
   end
 
   add_foreign_key "customers", "users", on_delete: :cascade

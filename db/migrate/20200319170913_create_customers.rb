@@ -9,7 +9,6 @@ class CreateCustomers < ActiveRecord::Migration[6.0]
       t.decimal :imc, precision: 10, scale: 2
       t.integer :daily_foods
       t.string :disease
-      t.boolean :is_completed, default: false
 
       t.timestamps
     end
