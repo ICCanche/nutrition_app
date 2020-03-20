@@ -15,3 +15,12 @@ en:
     forbidden:
       title: 'Permisos inválidos'
       detail: 'No tienes permitido accecer a este recurso'
+    missing_parameter:
+      title: 'Hacen faltan parámetros'
+      detail: 'Hacen faltan parámetros a la información suministrada'
+    entity_already_exists:
+      title: 'La entidad ya existe'
+      detail: 'La entidad que estás intentando crear ya existe'
+    unprocessable_entity:
+      title: 'Incapaz de procesar la petición'
+      detail: 'No se puede procesar la petición'

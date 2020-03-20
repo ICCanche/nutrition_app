@@ -5,10 +5,12 @@ module Error
 
         def initialize(message = I18n.t('errors.internal_server_error.detail'), 
               status: :internal_server_error,
-              title: I18n.t('errors.internal_server_error.title'))
+              title: I18n.t('errors.internal_server_error.title'), 
+              detail: nil)
             @status = status
             @title = title
             @message = message
+            @detail = detail
         end
 
             # returns the error as its hash representation
@@ -17,6 +19,7 @@ module Error
             message: message,
             status: status,
             error: error,
+            detail: detail
           }
         end
   

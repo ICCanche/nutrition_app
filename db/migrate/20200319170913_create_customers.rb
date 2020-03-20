@@ -6,7 +6,7 @@ class CreateCustomers < ActiveRecord::Migration[6.0]
       t.string :occupation
       t.decimal :weight
       t.decimal :height
-      t.decimal :imc
+      t.decimal :imc, precision: 10, scale: 2
       t.integer :daily_foods
       t.string :disease
       t.boolean :is_completed, default: false

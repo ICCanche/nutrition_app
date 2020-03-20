@@ -15,9 +15,21 @@ module Error
                                   detail: { failures: e.failures }
         end
 
+        rescue_from ActionController::ParameterMissing do |e|
+          respond MissingParameter.new e.message, param: e.param
+        end
+
         rescue_from Forbidden do |e|
           respond Forbidden.new
         end
+        
+        rescue_from EntityAlreadyExists do |e|
+          respond EntityAlreadyExists.new
+        end
+
+        rescue_from UnprocessableEntity do |e|
+          respond UnprocessableEntity.new
+        end        
         
         end
 
