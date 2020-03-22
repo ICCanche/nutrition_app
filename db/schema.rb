@@ -10,10 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_18_024819) do
+ActiveRecord::Schema.define(version: 2020_03_20_233648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "customers", force: :cascade do |t|
+    t.string "gender"
+    t.integer "age"
+    t.string "occupation"
+    t.decimal "weight"
+    t.decimal "height"
+    t.decimal "imc", precision: 10, scale: 2
+    t.integer "daily_foods"
+    t.boolean "is_completed", default: false
+    t.string "disease"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_customers_on_user_id"
+  end
+
+  create_table "customers_foods", id: false, force: :cascade do |t|
+    t.bigint "food_id", null: false
+    t.bigint "customer_id", null: false
+    t.index ["food_id", "customer_id"], name: "index_customers_foods_on_food_id_and_customer_id"
+  end
+
+  create_table "customers_goals", id: false, force: :cascade do |t|
+    t.bigint "goal_id", null: false
+    t.bigint "customer_id", null: false
+    t.index ["customer_id", "goal_id"], name: "index_customers_goals_on_customer_id_and_goal_id"
+  end
+
+  create_table "customers_physical_activities", id: false, force: :cascade do |t|
+    t.bigint "physical_activity_id", null: false
+    t.bigint "customer_id", null: false
+    t.index ["physical_activity_id", "customer_id"], name: "index_customers_excersise_on_excersise_id_and_customer_id"
+  end
 
   create_table "food_categories", force: :cascade do |t|
     t.string "name", null: false
@@ -50,7 +84,9 @@ ActiveRecord::Schema.define(version: 2020_03_18_024819) do
     t.string "profile_picture"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "role", default: 0
   end
 
+  add_foreign_key "customers", "users", on_delete: :cascade
   add_foreign_key "foods", "food_categories"
 end

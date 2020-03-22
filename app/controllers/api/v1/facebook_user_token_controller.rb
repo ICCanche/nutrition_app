@@ -32,6 +32,7 @@ module API
                 user.last_name = facebookData["last_name"]
                 user.profile_picture = facebookData["picture"]["data"]["url"]
                 user.email = facebookData["email"]
+                user.role = :customer
                 user.uid = facebookData["id"]
               end
             end

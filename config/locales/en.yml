@@ -43,3 +43,15 @@ en:
     invalid_facebook_token:
       title: 'Invalid facebook token'
       detail: 'You entered an invalid  facebook token'
+    forbidden:
+      title: 'Invalid Permissions'
+      detail: 'You are not allowed to access this resource'
+    missing_parameter:
+      title: 'Missing parameter'
+      detail: 'Your request has missing parameters'
+    entity_already_exists:
+      title: 'Entity already exists'
+      detail: 'The entity you are trying to create already exists'
+    unprocessable_entity:
+      title: 'Unprocessable entity'
+      detail: 'Cannot process the request'

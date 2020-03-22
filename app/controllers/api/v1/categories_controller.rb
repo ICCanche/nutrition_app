@@ -1,7 +1,7 @@
 module API
     module V1
         class CategoriesController < APIController
-            before_action :authenticate_user
+            before_action :authenticate_user, :check_permissions
 
             def index
                 @categories =  FoodCategory.all

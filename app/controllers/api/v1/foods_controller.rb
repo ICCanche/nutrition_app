@@ -1,7 +1,7 @@
 module API
     module V1
         class FoodsController < APIController
-            before_action :authenticate_user
+            before_action :authenticate_user, :check_permissions
             
             def index
                 if (params.has_key?(:category_id)) 
