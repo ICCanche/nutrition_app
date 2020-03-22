@@ -11,8 +11,8 @@ module API
                     customer.food_ids = params[:food_ids]
                     customer.goal_ids = params[:goal_ids]
                     customer.physical_activity_ids = params[:physical_activity_ids]
+                    customer.is_completed = true
                     if customer.save
-                        customer.is_completed = true
                         render json: customer, serializer: CustomerSerializer
                     else
                         raise Error::UnprocessableEntity
