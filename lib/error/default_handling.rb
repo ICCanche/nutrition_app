@@ -19,6 +19,10 @@ module Error
           respond MissingParameter.new e.message, param: e.param
         end
 
+        rescue_from ActiveRecord::RecordNotFound do |e|
+          respond NotFound.new e.message
+        end
+
         rescue_from Forbidden do |e|
           respond Forbidden.new
         end
