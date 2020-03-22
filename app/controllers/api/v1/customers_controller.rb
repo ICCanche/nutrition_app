@@ -8,8 +8,11 @@ module API
                     customer = Customer.new(create_customer_params)
                     customer.user_id = current_user.id
                     customer.imc = CalculationUtils.calculateIMC(params[:weight], params[:height])
+                    customer.food_ids = params[:food_ids]
+                    customer.goal_ids = params[:goal_ids]
+                    customer.physical_activity_ids = params[:physical_activity_ids]
                     if customer.save
-                        update_user_completion
+                        customer.is_completed = true
                         render json: customer, serializer: CustomerSerializer
                     else
                         raise Error::UnprocessableEntity
@@ -21,14 +24,10 @@ module API
 
             private
 
-            def update_user_completion
-                current_user.is_completed = true
-                current_user.save
-            end
-
             def create_customer_params
-                params.require([:gender, :age, :occupation, :weight, :height, :daily_foods, :disease])
-                params.permit([:gender, :age, :occupation, :weight, :height, :daily_foods, :disease])
+                params.require([:gender, :age, :occupation, :weight, :height, :daily_foods, :disease, :goal_ids, :physical_activity_ids, :food_ids])
+                params[:food_ids] ||= []
+                params.permit([:gender, :age, :occupation, :weight, :height, :daily_foods, :disease, :goal_ids, :physical_activity_ids, :food_ids, food_ids:[]])
             end
         end
     end

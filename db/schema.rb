@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_20_211242) do
+ActiveRecord::Schema.define(version: 2020_03_20_233648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2020_03_20_211242) do
     t.decimal "height"
     t.decimal "imc", precision: 10, scale: 2
     t.integer "daily_foods"
+    t.boolean "is_completed", default: false
     t.string "disease"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -40,6 +41,12 @@ ActiveRecord::Schema.define(version: 2020_03_20_211242) do
     t.bigint "goal_id", null: false
     t.bigint "customer_id", null: false
     t.index ["customer_id", "goal_id"], name: "index_customers_goals_on_customer_id_and_goal_id"
+  end
+
+  create_table "customers_physical_activities", id: false, force: :cascade do |t|
+    t.bigint "physical_activity_id", null: false
+    t.bigint "customer_id", null: false
+    t.index ["physical_activity_id", "customer_id"], name: "index_customers_excersise_on_excersise_id_and_customer_id"
   end
 
   create_table "food_categories", force: :cascade do |t|
@@ -78,7 +85,6 @@ ActiveRecord::Schema.define(version: 2020_03_20_211242) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "role", default: 0
-    t.boolean "is_completed", default: false
   end
 
   add_foreign_key "customers", "users", on_delete: :cascade
