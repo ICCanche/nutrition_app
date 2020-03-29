@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_03_29_175658) do
   end
 
   create_table "diets", force: :cascade do |t|
+    t.string "name"
     t.integer "price", null: false
     t.integer "status", default: 0
     t.text "recommendations"
