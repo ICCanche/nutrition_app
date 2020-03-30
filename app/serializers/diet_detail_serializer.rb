@@ -4,14 +4,14 @@ class DietDetailSerializer < ActiveModel::Serializer
     def meals_per_day
         meals = object.meals.order("weekday")
         results = meals.group_by(&:weekday).map do |weekday, meals|
-            [weekday , serialized_some_models(meals)]
+            [weekday , serialized_meals(meals)]
         end.to_h
         return results
     end
 
     private
 
-    def serialized_some_models meals
+    def serialized_meals meals
         meals.map{ |meal| MealSerializer.new(meal, root: false) }
     end
 end
