@@ -10,13 +10,6 @@ module API
 
             def show
                 diet = Diet.find(params[:id])
-                meals = diet.meals.order("weekday")
-                results = meals.group_by(&:weekday).map do |weekday, meals|
-                    {
-                        weekday: weekday,
-                        meals: meals
-                    }
-                end
                 render json: diet, serializer: DietDetailSerializer
             end
         end
