@@ -55,3 +55,6 @@ en:
     unprocessable_entity:
       title: 'Unprocessable entity'
       detail: 'Cannot process the request'
+    cannot_request_diet:
+      title: 'Cannot request diet'
+      detail: 'You have requested a diet that has not expired yet.'

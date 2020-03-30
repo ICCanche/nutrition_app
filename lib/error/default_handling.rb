@@ -26,6 +26,10 @@ module Error
         rescue_from Forbidden do |e|
           respond Forbidden.new
         end
+
+        rescue_from CannotRequestDiet do |e|
+          respond CannotRequestDiet.new
+        end
         
         rescue_from EntityAlreadyExists do |e|
           respond EntityAlreadyExists.new
