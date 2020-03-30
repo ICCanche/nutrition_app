@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_20_233648) do
+ActiveRecord::Schema.define(version: 2020_03_30_215419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_03_20_233648) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
+    t.boolean "can_request_diet", default: true
     t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
@@ -47,6 +48,18 @@ ActiveRecord::Schema.define(version: 2020_03_20_233648) do
     t.bigint "physical_activity_id", null: false
     t.bigint "customer_id", null: false
     t.index ["physical_activity_id", "customer_id"], name: "index_customers_excersise_on_excersise_id_and_customer_id"
+  end
+
+  create_table "diets", force: :cascade do |t|
+    t.string "name"
+    t.integer "price", null: false
+    t.integer "status", default: 0
+    t.text "recommendations"
+    t.datetime "expiration_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "customer_id", null: false
+    t.index ["customer_id"], name: "index_diets_on_customer_id"
   end
 
   create_table "food_categories", force: :cascade do |t|
@@ -70,6 +83,16 @@ ActiveRecord::Schema.define(version: 2020_03_20_233648) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "meals", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.integer "weekday"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "diet_id", null: false
+    t.index ["diet_id"], name: "index_meals_on_diet_id"
+  end
+
   create_table "physical_activities", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -88,5 +111,7 @@ ActiveRecord::Schema.define(version: 2020_03_20_233648) do
   end
 
   add_foreign_key "customers", "users", on_delete: :cascade
+  add_foreign_key "diets", "customers", on_delete: :cascade
   add_foreign_key "foods", "food_categories"
+  add_foreign_key "meals", "diets", on_delete: :cascade
 end
