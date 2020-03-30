@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: 'json' } do
     namespace :v1, defaults: { format: 'json' } do
       resources :foods, :categories, :physical_activities, :goals, only: [:index]
+      resources :diets, only: [:index, :show]
       resources :facebook_user_token, :customers, only: [:create]
       #custom user routes
       get '/users/current', to: 'users#current', as: 'current_user'
