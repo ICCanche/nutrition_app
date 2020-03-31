@@ -10,6 +10,13 @@
   </head>
 
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <ul class="nav justify-content-end">
+      <%- if nutritionist_signed_in? %>
+        <%= link_to 'Cerrar sesión', destroy_nutritionist_session_path, method: :delete %>
+      <% end %>
+    </ul>
     <%= yield %>
   </body>
 </html>

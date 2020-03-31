@@ -6,6 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+unless Nutritionist.all.count != 0
+    puts "Creating default nutritionist"
+    nutritionist = Nutritionist.new(
+        :email                 => "irvin6269@gmail.com",
+        :password              => "123456",
+        :password_confirmation => "123456",
+        :name => "Administrador"
+    )
+    nutritionist.save
+end
+
 food_categories = FoodCategory.all
 unless food_categories.count != 0
     puts "Creating default food categories"
