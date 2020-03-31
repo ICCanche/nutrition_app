@@ -7,7 +7,7 @@ class UserViewObject
       @customer = customer
     end
 
-    def dietRequestStatus
+    def dietStatus
         dietRequestStatus = customer.diets.order('created_at DESC').first
         unless dietRequestStatus != nil
             return "new"
