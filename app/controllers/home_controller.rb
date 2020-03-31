@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
   def index
-    customers = Customer.all
-    @customers = customers.map { |customer| UserViewObject.new(customer) }
+    @diets = Diet.order(created_at: :desc)
   end
 end
