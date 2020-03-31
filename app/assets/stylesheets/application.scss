@@ -1,1 +1,78 @@
 @import 'bootstrap/scss/bootstrap';
+
+.login-container {
+  background-color: #3b4465;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.navbar-brand {
+  padding: 23.5px 20px;
+  font-size: 18px;
+}
+
+.navbar-nav {
+  padding-right: 1em;
+}
+
+.nav-item {
+  padding: 20px 8px;
+  margin: 0px 3px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 16px;
+  color: grey;
+}
+
+.nav-item.active {
+  color: #28a745;
+}
+
+.nav-item:hover {
+  color: #28a745;
+}
+
+a {
+  color: inherit !important;
+}
+
+.nav-link {
+  padding: 5px;
+}
+
+.navbar-collapse.collapse.in {
+  display: block !important;
+}
+
+.fa-angle-down {
+  padding-left: 10px;
+}
+
+.fa-icon {
+  font-size: 30px;
+  color: #fff;
+  background-color: pink;
+  margin: 2px 10px 5px 0px;
+  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+}
+
+.tab {
+  margin-bottom: 20px;
+  width: 230px;
+}
+
+.tab:hover {
+  color: #e91e63 !important;
+}
+
+.dropdown-item {
+  padding: 5px 1rem;
+}
+
+.dropdown-item:hover {
+  background-color: inherit;
+}

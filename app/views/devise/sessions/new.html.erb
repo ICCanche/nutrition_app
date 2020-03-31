@@ -1,26 +1,66 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container-fluid login-container">
+<div class="col-xs-10 col-xs-offset-1">
+    <% flash.each do |type, msg| %>
+      <% if type == "notice" %>
+        <div class="alert alert-success">
+      <% elsif type == "alert" %>
+        <div class="alert alert-danger">
+      <% else %>
+        <div class='alert alert-<%= "#{type}" %>'>
+      <% end %>
+      <a href="#" class="close" data-dismiss="alert">&#215;</a>
+      <ul>
+        <li>
+          <%= msg %>
+        </li>
+      </ul>
+    <% end %>
   </div>
+    <div class= "container">
+    <div class="row">
+    <div class="col-md-12 min-vh-100 d-flex flex-column justify-content-center">
+        <div class="row">
+            <div class="col-lg-6 col-md-8 mx-auto">
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+                <!-- form card login -->
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <div class="card rounded shadow shadow-sm">
+                    <div class="card-header">
+                        <h3 class="mb-0">Login</h3>
+                    </div>
+                    <div class="card-body">
+                            <div class="form-group">
+                                <div class="invalid-feedback">Oops, you missed this one.</div>
+                                <%= f.label :email %><br />
+                                <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => 'form-control form-control-lg rounded-0' %>
+                            </div>
+                            <div class="form-group">
+                                <div class="invalid-feedback">Enter your password too!</div>
+                                <%= f.label :password %><br />
+                                <%= f.password_field :password, autocomplete: "current-password", :class => 'form-control form-control-lg rounded-0' %>
+                            </div>
+                            <div>
+                                <%= f.check_box :remember_me %>
+                                <%= f.label :remember_me, 'Recordarme en este dispositivo' %>
+                            </div>
+                            <%= f.submit "Iniciar sesión", :class => 'btn btn-success btn-lg float-right' %>
+                    </div>
+                    <!--/card-block-->
+                </div>
+                <% end %>
+                <!-- /form card login -->
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+            </div>
+
+
+        </div>
+        <!--/row-->
+
     </div>
-  <% end %>
+    <!--/col-->
+</div>
+<!--/row-->
+</div>
+    </div>
+<!--/container-->
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
