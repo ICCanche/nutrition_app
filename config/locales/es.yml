@@ -91,3 +91,10 @@ en:
       terms_date: '%-d de %B de %Y'
       terms_hour: '%-I:%M %p'
       date_with_time: '%d de %B de %Y %I:%M %p'
+  views:
+    pagination:
+      first: '&laquo; Primero'
+      last: 'Último &raquo;'
+      previous: '&lsaquo; Anterior'
+      next: 'Siguiente &rsaquo;'
+      truncate: '&hellip;'
