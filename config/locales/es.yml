@@ -27,3 +27,74 @@ en:
     cannot_request_diet:
       title: 'No se puede procesar la petición'
       detail: 'Existe una solicitud de dieta vigente, es necesario esperar el tiempo de expiración para solicitar una nueva.'
+  date:
+    abbr_day_names:
+      - dom
+      - lun
+      - mar
+      - mié
+      - jue
+      - vie
+      - sáb
+    abbr_month_names:
+      -
+      - ene
+      - feb
+      - mar
+      - abr
+      - may
+      - jun
+      - jul
+      - ago
+      - sep
+      - oct
+      - nov
+      - dic
+    day_names:
+      - Domingo
+      - Lunes
+      - Martes
+      - Miércoles
+      - Jueves
+      - Viernes
+      - Sábado
+    formats:
+      default: ! '%d/%m/%Y'
+      long: ! '%d de %B de %Y'
+      short: ! '%d de %b'
+    month_names:
+      -
+      - Enero
+      - Febrero
+      - Marzo
+      - Abril
+      - Mayo
+      - Junio
+      - Julio
+      - Agosto
+      - Septiembre
+      - Octubre
+      - Noviembre
+      - Diciembre
+    order:
+      - :day
+      - :month
+      - :year
+  time:
+    formats:
+      default: '%Y/%m/%d'
+      short: '%b %d'
+      long: '%B %d, %Y'
+      verbose: '%d de %B de %Y'
+      hour_of_the_day: '%H:%M:%S'
+      gmt_offset: '%H:%M:%S GMT %:z'
+      terms_date: '%-d de %B de %Y'
+      terms_hour: '%-I:%M %p'
+      date_with_time: '%d de %B de %Y %I:%M %p'
+  views:
+    pagination:
+      first: '&laquo; Primero'
+      last: 'Último &raquo;'
+      previous: '&lsaquo; Anterior'
+      next: 'Siguiente &rsaquo;'
+      truncate: '&hellip;'

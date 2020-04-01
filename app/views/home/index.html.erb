@@ -1,0 +1,59 @@
+<div class="container">
+<br>
+<div class="row">
+    <div class="col-12 col-sm-6 col-lg-9">
+      <h2>Registro de dietas</h2>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-3">
+    <%= form_tag url_for(:controller => 'home', :action => 'index'), :method => 'get' do %>
+      <div class="input-group">
+        <%= select_tag :status, options_for_select([['Todos', 'all'], ['Solicitados', 'requested'], ['Aprobados', 'approved'], ['Pagados', 'paid'], ['Expirados', 'expired']] , params[:status]) %>
+        <%= submit_tag 'Filtrar', :class => 'btn btn-info filter-button' %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+<br>
+<table class="table">
+<thead>
+  <tr>
+    <th scope="col">Solicitado por</th>
+    <th scope="col">Estado</th>
+    <th scope="col">Fecha de solicitud</th>
+    <th scope="col">Fecha de expiración</th>
+    <th scope="col">Acciones</th>
+  </tr>
+</thead>
+<tbody>
+<% @diets.each do |diet| %>
+    <tr>
+    <td><%= diet.customer.user.first_name %> <%= diet.customer.user.last_name %></td>
+    <td>
+    <%- if diet.status.eql? 'requested' %>
+    <button type="button" class="btn btn-warning btn-sm">Solicitado</button>
+    <% elsif diet.status.eql? 'approved' %>
+    <button type="button" class="btn btn-info btn-sm">Aprobado</button>
+    <% elsif diet.status.eql? 'paid' %>
+    <button type="button" class="btn btn-success btn-sm">Pagado</button>
+    <% elsif diet.status.eql? 'expired' %>
+    <button type="button" class="btn btn-danger btn-sm">Expirado</button>
+    <%- end %>
+    </td>
+    <td><%= l with_mx_time_zone(diet.created_at), format: :date_with_time %></td>
+    <td><%= diet.expiration_date %></td>
+    <td>
+    <button class="btn btn-primary">
+      <%- if diet.status.eql? 'expired' %>
+        <i class="fas fa-eye"></i> 
+      <%- else %>
+      <i class="fas fa-pen"></i>
+      <% end %>
+    </button>
+    </td>
+  </tr>
+  <% end %>
+
+</tbody>
+</table>
+<%= paginate @diets, window: 2 %>
+</div>
