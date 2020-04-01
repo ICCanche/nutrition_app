@@ -21,7 +21,7 @@
         <button type="button" class="btn btn-warning btn-sm">Solicitado</button>
     <%- end %>
     </td>
-    <td><%= diet.created_at %></td>
+    <td><%= l with_mx_time_zone(diet.created_at), format: :date_with_time %></td>
     <td><%= diet.expiration_date %></td>
     <td>
     <button class="btn btn-primary">
