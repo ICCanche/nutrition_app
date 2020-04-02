@@ -1,0 +1,68 @@
+<div class="container">
+<p id="notice"><%= notice %></p>
+<h2>Detalle de dieta</h2>
+<br><br>
+<h4>Datos del usuario</h4>
+<br>
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Dato</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Nombre</b></td>
+        <td><%= @diet.customer.user.first_name %> <%= @diet.customer.user.last_name %></td>
+      </tr>
+      <tr>
+      <td><b>Edad</b></td>
+      <td><%= @diet.customer.age %> años</td>
+      </tr>
+      <tr>
+      <td><b>Ocupación</b></td>
+      <td><%= @diet.customer.occupation %></td>
+      </tr>
+      <tr>
+      <td><b>Peso</b></td>
+      <td><%= @diet.customer.weight %> kg</td>
+      </tr>
+      <tr>
+      <td><b>Altura</b></td>
+      <td><%= @diet.customer.height %> mts</td>
+      </tr>
+      <tr>
+      <td><b>IMC</b></td>
+      <td><%= @diet.customer.imc %></td>
+      </tr>
+      <tr>
+      <td><b>No. de comidas al día</b></td>
+      <td><%= @diet.customer.daily_foods %></td>
+      </tr>
+      <tr>
+      <td><b>Padecimiento</b></td>
+      <td><%= @diet.customer.disease %></td>
+      </tr>
+      <tr>
+      <td><b>Objetivo</b></td>
+      <td><%= @diet.customer.goals.first.name %></td>
+      </tr>
+      <tr>
+      <td><b>Ejercicio</b></td>
+      <td><%= @diet.customer.physical_activities.first.name %></td>
+      </tr>
+      <tr>
+      <td><b>Comidas</b></td>
+      <td>
+        <% @diet.customer.foods.each do |food| %>
+            <p><%= food.name %></p>
+        <% end %>
+      </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+<%= link_to 'Edit', edit_diet_path(@diet) %> 
+</div>
