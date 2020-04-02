@@ -28,6 +28,14 @@ en:
       title: 'No se puede procesar la petición'
       detail: 'Existe una solicitud de dieta vigente, es necesario esperar el tiempo de expiración para solicitar una nueva.'
   date:
+    weekday:
+      sunday: 'Domingo'
+      monday: 'Lunes'
+      tuesday: 'Martes'
+      wednesday: 'Miércoles'
+      thursday: 'Jueves'
+      friday: 'Viernes'
+      saturday: 'Sábado'
     abbr_day_names:
       - dom
       - lun

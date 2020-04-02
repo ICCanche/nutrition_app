@@ -2,6 +2,26 @@
 <p id="notice"><%= notice %></p>
 <h2>Detalle de dieta</h2>
 <br><br>
+<div class='row justify-content-center'>
+    <div class="col-8 col-sm-11">
+      <b>Estado: </b>  
+      <% if @diet.status.eql? "requested" %>
+        <button type="button" class="btn btn-warning btn-sm">Solicitado</button>
+        <% elsif @diet.status.eql? 'approved' %>
+        <button type="button" class="btn btn-info btn-sm">Aprobado</button>
+        <% elsif @diet.status.eql? 'paid' %>
+        <button type="button" class="btn btn-success btn-sm">Pagado</button>
+        <% elsif @diet.status.eql? 'expired' %>
+        <button type="button" class="btn btn-danger btn-sm">Expirado</button>
+        <% end %>
+    </div>
+    <div class="col-4 col-sm-1">
+    <% if !@diet.status.eql? 'expired' %>
+      <%= link_to 'Editar', edit_diet_path(@diet), class: "btn btn-light btn-small" %> 
+    <% end %>
+    </div>
+  </div>
+  <br><br>
 <h4>Datos del usuario</h4>
 <br>
 <table class="table table-bordered">
@@ -63,6 +83,36 @@
     </tbody>
   </table>
 
+  <% if !@diet.status.eql? "requested" %>
+    <h3>Datos de la dieta</h3>
+    <br>
+    <p><b>Fecha de solicitud: </b><%= l with_mx_time_zone(@diet.created_at), format: :date_with_time %></p>
+    <p><b>Fecha de expiración: </b><%= l with_mx_time_zone(@diet.expiration_date), format: :date_with_time unless @diet.expiration_date == nil %></p>
+    
+    <% @diet.mealsPerDay.each do |weekday, meals| %>
+    <br>
+      <h4><%= I18n.t('date.weekday.'+ weekday) %></h4>
+      <br>
+      <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Contenido</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% meals.each do |meal| %>
+    <tr>
+    <td><%= meal.name %></td>
+    <td><%= meal.content %></td>
+  </tr>
+  <% end %>
 
-<%= link_to 'Edit', edit_diet_path(@diet) %> 
+  </tbody>
+</table>
+<br>
+
+    <% end %>
+    <% end %>
+
 </div>

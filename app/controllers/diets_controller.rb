@@ -1,4 +1,5 @@
 class DietsController < ApplicationController
+  helper TimeZoneConverter
   before_action :set_diet, only: [:show, :edit, :update, :destroy]
 
   # GET /diets
@@ -10,6 +11,7 @@ class DietsController < ApplicationController
   # GET /diets/1
   # GET /diets/1.json
   def show
+    @diet = DietViewObject.new(@diet)
   end
 
   # GET /diets/new
