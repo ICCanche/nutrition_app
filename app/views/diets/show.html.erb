@@ -17,7 +17,7 @@
     </div>
     <div class="col-4 col-sm-1">
     <% if !@diet.status.eql? 'expired' %>
-      <%= link_to 'Editar', edit_diet_path(@diet), class: "btn btn-light btn-small" %> 
+      <%= link_to 'Editar', edit_diet_path(@diet.id), class: "btn btn-light btn-small" %> 
     <% end %>
     </div>
   </div>

@@ -1,7 +1,7 @@
 class DietViewObject
     attr_reader :diet
 
-    delegate :status, :customer, :created_at, :expiration_date, to: :diet
+    delegate :id, :status, :customer, :created_at, :expiration_date, to: :diet
 
     def initialize(diet)
         @diet = diet

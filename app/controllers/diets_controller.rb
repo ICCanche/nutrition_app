@@ -44,7 +44,7 @@ class DietsController < ApplicationController
   def update
     respond_to do |format|
       if @diet.update(diet_params)
-        format.html { redirect_to @diet, notice: 'Diet was successfully updated.' }
+        format.html { redirect_to @diet, :flash => { :success => "Se ha actualizado la dieta correctamente" } }
         format.json { render :show, status: :ok, location: @diet }
       else
         format.html { render :edit }
