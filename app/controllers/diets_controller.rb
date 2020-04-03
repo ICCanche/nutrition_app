@@ -21,6 +21,7 @@ class DietsController < ApplicationController
 
   # GET /diets/1/edit
   def edit
+    @diet = DietViewObject.new(@diet)
   end
 
   # POST /diets

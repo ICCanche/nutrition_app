@@ -1,8 +1,38 @@
 <div class="container">
 <h1>Actualizar dieta</h1>
+<%= link_to 'Regresar', @diet.to_model, class: 'btn btn-light btn-small' %>
+<br><br><br>
+<% @diet.mealsPerDay.each do |weekday, meals| %>
+    <br>
+      <h4><%= I18n.t('date.weekday.'+ weekday) %></h4>
+      <br>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Contenido</th>
+            <th scope="col">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% meals.each do |meal| %>
+          <tr>
+          <td><%= meal.name %></td>
+          <td><%= meal.content %></td>
+          <td><%= link_to 'Editar', edit_meal_path(meal.id), class: "btn btn-light" %> </td>
+        </tr>
+        <% end %>
 
-<%= render 'form', diet: @diet %>
-
-<%= link_to 'Show', @diet %> |
+        </tbody>
+      </table>
+      <br>
+    <% end %>
+<form>
+<%= form_for(@diet, :url => diet_path, :method => :put) do |f| %>
+  <div class="form-group">
+      <%= f.label :recommendations %><br />
+      <%= f.text_area :recommendations, autofocus: true, autocomplete: "content", :class => 'form-control form-control-lg ' %>
+  </div>
+  <%= f.submit "Guardar", :class => 'btn btn-info' %>
+<% end %>
 </div>
-
