@@ -1,4 +1,14 @@
 en:
+  activerecord:
+    errors:
+      models:
+        meal:
+          attributes:
+            name:
+              inclusion: 'El nombre no puede estar vacío'
+              minimumMessage: 'El nombre es muy corto, mínimo son 5 carácteres'
+            content:
+              inclusion: 'El contenido no puede estar vacío'
   errors:
     internal_server_error:
       title: 'Error en el servidor'
@@ -28,6 +38,14 @@ en:
       title: 'No se puede procesar la petición'
       detail: 'Existe una solicitud de dieta vigente, es necesario esperar el tiempo de expiración para solicitar una nueva.'
   date:
+    weekday:
+      sunday: 'Domingo'
+      monday: 'Lunes'
+      tuesday: 'Martes'
+      wednesday: 'Miércoles'
+      thursday: 'Jueves'
+      friday: 'Viernes'
+      saturday: 'Sábado'
     abbr_day_names:
       - dom
       - lun

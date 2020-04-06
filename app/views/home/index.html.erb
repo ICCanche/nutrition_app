@@ -25,30 +25,25 @@
   </tr>
 </thead>
 <tbody>
-<% @diets.each do |diet| %>
+<% @diets.each do |diet_model| %>
     <tr>
-    <td><%= diet.customer.user.first_name %> <%= diet.customer.user.last_name %></td>
+    <td><%= diet_model.customer.user.first_name %> <%= diet_model.customer.user.last_name %></td>
     <td>
-    <%- if diet.status.eql? 'requested' %>
+    <%- if diet_model.status.eql? 'requested' %>
     <button type="button" class="btn btn-warning btn-sm">Solicitado</button>
-    <% elsif diet.status.eql? 'approved' %>
+    <% elsif diet_model.status.eql? 'approved' %>
     <button type="button" class="btn btn-info btn-sm">Aprobado</button>
-    <% elsif diet.status.eql? 'paid' %>
+    <% elsif diet_model.status.eql? 'paid' %>
     <button type="button" class="btn btn-success btn-sm">Pagado</button>
-    <% elsif diet.status.eql? 'expired' %>
+    <% elsif diet_model.status.eql? 'expired' %>
     <button type="button" class="btn btn-danger btn-sm">Expirado</button>
     <%- end %>
     </td>
-    <td><%= l with_mx_time_zone(diet.created_at), format: :date_with_time %></td>
-    <td><%= diet.expiration_date %></td>
+    <td><%= l with_mx_time_zone(diet_model.created_at), format: :date_with_time %></td>
+    <td><%= diet_model.expiration_date %></td>
     <td>
-    <button class="btn btn-primary">
-      <%- if diet.status.eql? 'expired' %>
-        <i class="fas fa-eye"></i> 
-      <%- else %>
-      <i class="fas fa-pen"></i>
-      <% end %>
-    </button>
+    <%= button_to "Ver detalles", { action: "show", controller: "diets", id: diet_model.id },  class:"btn btn-light btn-sm",
+                                method: :get %>
     </td>
   </tr>
   <% end %>
