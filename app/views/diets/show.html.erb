@@ -1,6 +1,7 @@
 <div class="container">
 <p id="notice"><%= notice %></p>
 <h2>Detalle de dieta</h2>
+<%= link_to 'Regresar', "/", class: 'btn btn-light btn-small' %>
 <br><br>
 <div class='row justify-content-center'>
     <div class="col-8 col-sm-11">
@@ -83,7 +84,6 @@
     </tbody>
   </table>
 
-  <% if !@diet.status.eql? "requested" %>
     <h3>Datos de la dieta</h3>
     <br>
     <p><b>Fecha de solicitud: </b><%= l with_mx_time_zone(@diet.created_at), format: :date_with_time %></p>
@@ -111,7 +111,6 @@
         </tbody>
       </table>
       <br>
-    <% end %>
     <% end %>
 
 </div>

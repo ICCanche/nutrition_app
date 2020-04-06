@@ -14,7 +14,10 @@ class MealsController < ApplicationController
 
   # GET /meals/new
   def new
-    @meal = Meal.new
+    validate_diet_status
+    newMeal = Meal.new
+    @meal = NewMealViewObject.new(newMeal)
+    @meal.set_diet(params[:diet_id])
   end
 
   # GET /meals/1/edit
@@ -25,14 +28,11 @@ class MealsController < ApplicationController
   # POST /meals.json
   def create
     @meal = Meal.new(meal_params)
-
     respond_to do |format|
       if @meal.save
-        format.html { redirect_to @meal, notice: 'Meal was successfully created.' }
-        format.json { render :show, status: :created, location: @meal }
+        format.html { redirect_to new_meal_path(diet_id: @meal.diet_id, weekday: meal_params[:weekday]), :flash => { :success => "Se ha creado la comida correctamente. Puedes seguir agregando más alimentos." } }
       else
         format.html { render :new }
-        format.json { render json: @meal.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -67,6 +67,17 @@ class MealsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meal_params
-      params.require(:meal).permit(:name, :content, :weekday)
+      params.require(:meal).permit(:name, :content, :weekday, :diet_id)
+    end
+
+    def validate_diet_status
+      if !params[:diet_id]
+        redirect_to '/'
+      end
+      diet = Diet.find(params[:diet_id])
+      if diet.paid? || diet.expired? 
+        redirect_to '/'
+      end
+
     end
 end

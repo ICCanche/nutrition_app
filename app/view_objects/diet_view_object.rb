@@ -13,9 +13,17 @@ class DietViewObject
 
     def mealsPerDay
         meals = diet.meals.order("weekday")
-        results = meals.group_by(&:weekday).map do |weekday, meals|
+        results = meals.order("created_at").group_by(&:weekday).map do |weekday, meals|
             [weekday , meals]
         end
         return results
+    end
+
+    def canAddMeals
+        if @diet.expired? || @diet.paid? || @diet.meals.group_by(&:weekday).count >= 7
+            return false
+        else
+            return true
+        end
     end
 end

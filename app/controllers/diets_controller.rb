@@ -5,7 +5,7 @@ class DietsController < ApplicationController
   # GET /diets
   # GET /diets.json
   def index
-    @diets = Diet.all
+    @diets = Diet.order('updated_at')
   end
 
   # GET /diets/1
@@ -21,6 +21,7 @@ class DietsController < ApplicationController
 
   # GET /diets/1/edit
   def edit
+    validate_diet_edition
     @diet = DietViewObject.new(@diet)
   end
 
@@ -43,6 +44,7 @@ class DietsController < ApplicationController
   # PATCH/PUT /diets/1
   # PATCH/PUT /diets/1.json
   def update
+    set_diet_status
     respond_to do |format|
       if @diet.update(diet_params)
         format.html { redirect_to @diet, :flash => { :success => "Se ha actualizado la dieta correctamente" } }
@@ -72,6 +74,19 @@ class DietsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def diet_params
-      params.fetch(:diet, {})
+      params.require(:diet).permit(:recommendations)
     end
+
+    def set_diet_status
+      if @diet.requested?
+        @diet.status = :approved
+      end
+    end
+
+    def validate_diet_edition
+      if @diet.expired?
+        redirect_to "/"
+      end
+    end
+
 end
