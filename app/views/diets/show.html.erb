@@ -89,28 +89,16 @@
     <p><b>Fecha de solicitud: </b><%= l with_mx_time_zone(@diet.created_at), format: :date_with_time %></p>
     <p><b>Fecha de expiración: </b><%= l with_mx_time_zone(@diet.expiration_date), format: :date_with_time unless @diet.expiration_date == nil %></p>
     
-    <% @diet.mealsPerDay.each do |weekday, meals| %>
     <br>
-      <h4><%= I18n.t('date.weekday.'+ weekday) %></h4>
-      <br>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Contenido</th>
-          </tr>
-        </thead>
-        <tbody>
-        <% meals.each do |meal| %>
-          <tr>
-          <td><%= meal.name %></td>
-          <td><%= meal.content %></td>
-        </tr>
+    <h4>Menú registrado</h4>
+      <% @diet.mealsPerType.each do |meal_type, meals| %>
+        <br>
+          <h5><%= I18n.t('meals.type.'+ meal_type) %></h5>
+          <ul>
+          <% meals.each do |meal| %>
+            <li><%= meal.content %></li>
+          <% end %>
+          </ul>
         <% end %>
-
-        </tbody>
-      </table>
-      <br>
-    <% end %>
 
 </div>

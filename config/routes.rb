@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   post 'user_token' => 'user_token#create'
   resources :foods
   resources :diets, only: [:show, :edit, :update]
-  resources :meals, only: [:new, :create, :edit, :update]
+  resources :meals, only: [:new, :create, :edit, :update, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 # ==================================
   # API subdomain

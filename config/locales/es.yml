@@ -37,6 +37,13 @@ en:
     cannot_request_diet:
       title: 'No se puede procesar la petición'
       detail: 'Existe una solicitud de dieta vigente, es necesario esperar el tiempo de expiración para solicitar una nueva.'
+  meals:
+    type:
+      breakfast: 'Desayuno'
+      morning_snack: 'Colación matutina'
+      lunch: 'Almuerzo'
+      evening_snack: 'Colación vespertina'
+      dinner: 'Cena'
   date:
     weekday:
       sunday: 'Domingo'

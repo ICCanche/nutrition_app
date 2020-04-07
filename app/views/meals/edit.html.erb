@@ -17,18 +17,6 @@
 
     <%= form_for(@meal, :url => meal_path, :method => :put) do |f| %>
         <div class="form-group">
-            <%= f.label :nombre %><br />
-            <%= f.text_field :name, autofocus: true, list: "names", :class => 'form-control form-control-lg' %>
-            <datalist id="names">
-              <option value="Desayuno">
-              <option value="Colación de medio día">
-              <option value="Almuerzo">
-              <option value="Colación de la tarde">
-              <option value="Cena">
-            </datalist>
-        </div>
-
-        <div class="form-group">
             <%= f.label :contenido %><br />
             <%= f.text_area :content, autofocus: true, autocomplete: "content", :class => 'form-control form-control-lg ' %>
         </div>

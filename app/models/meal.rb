@@ -1,7 +1,7 @@
 class Meal < ApplicationRecord
-    enum weekday: [ :sunday, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday ]
+    enum meal_type: [:breakfast, :morning_snack, :lunch, :evening_snack, :dinner]
+
     belongs_to :diet
 
-    validates :name, presence: { :message => :inclusion }, length: { minimum: 4, :message => :minimumMessage  }
     validates :content, presence: { :message => :inclusion }
 end

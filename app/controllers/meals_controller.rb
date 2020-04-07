@@ -30,7 +30,7 @@ class MealsController < ApplicationController
     @meal = Meal.new(meal_params)
     respond_to do |format|
       if @meal.save
-        format.html { redirect_to new_meal_path(diet_id: @meal.diet_id, weekday: meal_params[:weekday]), :flash => { :success => "Se ha creado la comida correctamente. Puedes seguir agregando más alimentos." } }
+        format.html { redirect_to new_meal_path(diet_id: @meal.diet_id, meal_type: meal_params[:meal_type]), :flash => { :success => "Se ha creado la comida correctamente. Puedes seguir agregando más alimentos." } }
       else
         format.html { render :new }
       end
@@ -54,7 +54,7 @@ class MealsController < ApplicationController
   def destroy
     @meal.destroy
     respond_to do |format|
-      format.html { redirect_to meals_url, notice: 'Meal was successfully destroyed.' }
+      format.html { redirect_to  edit_diet_url(@meal.diet), :flash => { :success => "Se ha eliminado la comida." } }
       format.json { head :no_content }
     end
   end
@@ -67,7 +67,7 @@ class MealsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meal_params
-      params.require(:meal).permit(:name, :content, :weekday, :diet_id)
+      params.require(:meal).permit(:name, :content, :diet_id, :meal_type)
     end
 
     def validate_diet_status

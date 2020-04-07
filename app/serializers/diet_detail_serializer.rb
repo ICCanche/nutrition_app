@@ -1,11 +1,11 @@
 class DietDetailSerializer < ActiveModel::Serializer
-    attributes :id, :name, :status, :recommendations, :created_at, :expiration_date, :meals_per_day
-    
-    def meals_per_day
-        meals = object.meals.order("weekday")
-        results = meals.order("created_at").group_by(&:weekday).map do |weekday, meals|
-            [weekday , serialized_meals(meals)]
-        end.to_h
+    attributes :id, :name, :status, :recommendations, :created_at, :expiration_date, :meals_per_type
+
+    def meals_per_type
+        meals = object.meals.order("meal_type")
+        results = meals.order("created_at").group_by(&:meal_type).map do |meal_type, meals|
+            [meal_type , serialized_meals(meals)]
+        end
         return results
     end
 
