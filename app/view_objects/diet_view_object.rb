@@ -26,4 +26,8 @@ class DietViewObject
             return true
         end
     end
+
+    def canEdit
+        return  diet.meals.group_by(&:meal_type).count >= 3
+    end
 end
