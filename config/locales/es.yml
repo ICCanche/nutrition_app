@@ -9,6 +9,10 @@ en:
               minimumMessage: 'El nombre es muy corto, mínimo son 5 carácteres'
             content:
               inclusion: 'El contenido no puede estar vacío'
+        food:
+          attributes:
+            name:
+              inclusion: 'El nombre no puede estar vacío'
   errors:
     internal_server_error:
       title: 'Error en el servidor'

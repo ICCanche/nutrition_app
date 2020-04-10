@@ -1,6 +1,26 @@
-<h1>Editing Food</h1>
+<div class="container">
+<h1>Editar comida</h1>
+<%= link_to 'Regresar', foods_path, class: 'btn btn-light btn-small' %>
+<br>
+<br>
+<% if @food.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+    <div id="error_explanation">
+      <h4><%= pluralize(@food.errors.count, "error")%></h4>
+      <ul>
+      <% @food.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+    </div>
+  <% end %>
+<%= form_for @food do |f| %>
+<div class="form-group">
+  <%= f.label 'Nombre' %><br />
+  <%= f.text_field :name, autofocus: true, autocomplete: "content", placeholder: "Escribe el nombre de la comida", :class => 'form-control form-control-lg' %>
+</div>
+  <%= f.submit 'Guardar', :class => 'btn btn-primary' %>
+<% end %>
+</div>
 
-<%= render 'form', food: @food %>
-
-<%= link_to 'Show', @food %> |
-<%= link_to 'Back', foods_path %>
