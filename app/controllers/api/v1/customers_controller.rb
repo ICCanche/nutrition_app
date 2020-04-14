@@ -12,6 +12,8 @@ module API
                     customer.goal_ids = params[:goal_ids]
                     customer.physical_activity_ids = params[:physical_activity_ids]
                     customer.is_completed = true
+                    stripeCustomer = StripeService.createCustomer(current_user)
+                    customer.stripe_customer_id = stripeCustomer.id
                     if customer.save
                         render json: customer, serializer: CustomerSerializer
                     else
