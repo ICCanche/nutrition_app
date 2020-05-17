@@ -4,24 +4,26 @@ module API
             before_action :authenticate_user, :check_permissions
 
             def create
-                unless !Customer.where({user_id: current_user.id}).empty?
-                    customer = Customer.new(create_customer_params)
-                    customer.user_id = current_user.id
-                    customer.imc = CalculationUtils.calculateIMC(params[:weight], params[:height])
-                    customer.food_ids = params[:food_ids]
-                    customer.goal_ids = params[:goal_ids]
-                    customer.physical_activity_ids = params[:physical_activity_ids]
-                    customer.is_completed = true
+                customer = Customer.where({user_id: current_user.id}).first
+                status = 200
+                unless !customer.nil?
+                    newCustomer = Customer.new(create_customer_params)
+                    newCustomer.user_id = current_user.id
+                    newCustomer.imc = CalculationUtils.calculateIMC(params[:weight], params[:height])
+                    newCustomer.food_ids = params[:food_ids]
+                    newCustomer.goal_ids = params[:goal_ids]
+                    newCustomer.physical_activity_ids = params[:physical_activity_ids]
+                    newCustomer.is_completed = true
                     stripeCustomer = StripeService.createCustomer(current_user)
-                    customer.stripe_customer_id = stripeCustomer.id
-                    if customer.save
-                        render json: customer, serializer: CustomerSerializer
+                    newCustomer.stripe_customer_id = stripeCustomer.id
+                    if newCustomer.save
+                        customer = newCustomer
+                        status = 201
                     else
                         raise Error::UnprocessableEntity
                     end
-                else
-                    raise Error::EntityAlreadyExists 
                 end
+                render json: customer, serializer: CustomerSerializer, status: status
             end
 
             private
