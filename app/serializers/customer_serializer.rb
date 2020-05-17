@@ -3,4 +3,8 @@ class CustomerSerializer < ActiveModel::Serializer
     has_many                        :foods, include_nested_associations: true
     has_many                        :goals, include_nested_associations: true
     has_many                        :physical_activities, include_nested_associations: true
+
+    def serializable_hash(adapter_options = nil, options = {}, adapter_instance = self.class.serialization_adapter_instance)
+        super(adapter_options, options, adapter_instance).select { |_, v| v }
+    end
 end

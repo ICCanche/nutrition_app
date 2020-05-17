@@ -29,7 +29,7 @@ module API
             private
 
             def create_customer_params
-                params.require([:gender, :age, :occupation, :weight, :height, :daily_foods, :disease, :goal_ids, :physical_activity_ids, :food_ids])
+                params.require([:gender, :age, :occupation, :weight, :height, :daily_foods, :goal_ids, :physical_activity_ids, :food_ids])
                 params[:food_ids] ||= []
                 params.permit([:gender, :age, :occupation, :weight, :height, :daily_foods, :disease, :goal_ids, :physical_activity_ids, :food_ids, food_ids:[]])
             end
