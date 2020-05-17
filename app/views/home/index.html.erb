@@ -40,7 +40,7 @@
     <%- end %>
     </td>
     <td><%= l with_mx_time_zone(diet_model.created_at), format: :date_with_time %></td>
-    <td><%= diet_model.expiration_date %></td>
+    <td><%= l with_mx_time_zone(diet_model.expiration_date), format: :date_with_time %></td>
     <td>
     <%= button_to "Ver detalles", { action: "show", controller: "diets", id: diet_model.id },  class:"btn btn-light btn-sm",
                                 method: :get %>

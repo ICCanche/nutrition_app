@@ -2,6 +2,8 @@ module API
     module V1
         class PaymentsController < APIController
             include CurrencyHelper
+            before_action :authenticate_user, :check_permissions
+            
             def stripe_key
                 publishableKey = Rails.application.credentials.stripe[:stripe_publishable_key]
                 render json: { publishableKey: publishableKey }
