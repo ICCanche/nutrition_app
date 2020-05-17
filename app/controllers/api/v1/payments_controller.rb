@@ -10,8 +10,9 @@ module API
             def pay_diet
                 diet = Diet.find(payment_params[:dietId])
                 if diet.approved?
-                    payment = StripeService.payDiet(convertMXNPesosToCents(diet.price), payment_params[:paymentMethodId], payment_params[:paymentIntentId], payment_params[:useStripeSdk])
-                    render json: payment
+                    response = StripeService.payDiet(convertMXNPesosToCents(diet.price), payment_params[:paymentMethodId], payment_params[:paymentIntentId], payment_params[:useStripeSdk])
+                    change_diet_status(response, diet)
+                    render json: response
                 else
                     raise Error::InvalidDietStatus
                 end
@@ -22,6 +23,14 @@ module API
             def payment_params
                 params.require([:dietId, :useStripeSdk])
                 params.permit([:dietId, :paymentMethodId, :paymentIntentId, :useStripeSdk])
+            end
+
+            def change_diet_status(response, diet)
+                if response.has_key? :clientSecret
+                    diet.status = :paid
+                    diet.expiration_date = diet.created_at + 1.month + 2.day
+                    diet.save
+                end
             end
         end
     end
