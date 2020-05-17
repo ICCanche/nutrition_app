@@ -41,6 +41,9 @@ en:
     cannot_request_diet:
       title: 'No se puede procesar la petición'
       detail: 'Existe una solicitud de dieta vigente, es necesario esperar el tiempo de expiración para solicitar una nueva.'
+    invalid_diet_status:
+      title: 'No se puede realizar el pago'
+      detail: 'Las dietas aprobadas son las únicas disponibles para pagar'
   meals:
     type:
       breakfast: 'Desayuno'

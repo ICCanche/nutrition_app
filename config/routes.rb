@@ -23,8 +23,13 @@ Rails.application.routes.draw do
       resources :diets, only: [:index, :show]
       post '/diets/request_for_diet', to: 'diets#create', as: 'request_for_diet'
       resources :facebook_user_token, :customers, only: [:create]
+      
       #custom user routes
       get '/users/current', to: 'users#current', as: 'current_user'
+
+      #payment
+      post '/payments/create', to: 'payments#pay_diet', as: 'pay_diet'
+      get '/payments/get-key', to: 'payments#stripe_key', as: 'get_stripe_key'
     end
     match '(*path)', to: 'errors#routing', via: :all
   end

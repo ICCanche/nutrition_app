@@ -37,8 +37,21 @@ module Error
 
         rescue_from UnprocessableEntity do |e|
           respond UnprocessableEntity.new
-        end        
+        end     
+
+      rescue_from InvalidDietStatus do |e|
+        respond InvalidDietStatus.new
+      end
         
+        #STRIPE
+        rescue_from Stripe::InvalidRequestError do |e|
+          respond UnprocessableEntity.new e.message
+        end
+        
+        rescue_from Stripe::CardError do |e|
+          respond UnprocessableEntity.new e.message
+        end
+
         end
 
         def respond(error)
