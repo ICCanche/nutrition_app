@@ -9,8 +9,6 @@ module API
 
             def pay_diet
                 diet = Diet.find(payment_params[:dietId])
-                puts "PTM #{payment_params}"
-                puts "INTENT #{ payment_params[:paymentIntentId] }"
                 if diet.approved?
                     payment = StripeService.payDiet(convertMXNPesosToCents(diet.price), payment_params[:paymentMethodId], payment_params[:paymentIntentId], payment_params[:useStripeSdk])
                     render json: payment
